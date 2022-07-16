@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "processing_instruction": "PROCESS_AS_COMPLETE",
+    "shard_number": 0,
+    "total_shards": 1,
+    "nonce": "9371383477",
+    "generation_timestamp": 1658035800
+  },
+  "service_availability": [
+    {
+      "availability": [
+        {
+          "spots_total": 10,
+          "spots_open": 10,
+          "duration_sec": 3600,
+          "service_id": "reservation",
+          "start_sec": 0,
+          "merchant_id": null,
+          "resources": {
+            "party_size": 3
+          },
+          "confirmation_mode": "CONFIRMATION_MODE_SYNCHRONOUS"
+        },
+        {
+          "spots_total": 8,
+          "spots_open": 8,
+          "duration_sec": 3600,
+          "service_id": "reservation",
+          "start_sec": 0,
+          "merchant_id": null,
+          "resources": {
+            "party_size": 4
+          },
+          "confirmation_mode": "CONFIRMATION_MODE_SYNCHRONOUS"
+        }
+      ]
+    }
+  ]
+}

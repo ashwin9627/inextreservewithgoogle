@@ -1,0 +1,22 @@
+{
+  "merchants": {
+    "merchant": [
+      {
+        "name": "restaurant 1",
+        "service_id": "reservation",
+        "details": [
+          {
+            "party_size": 3,
+            "total_slots": 10,
+            "open_slots": 10
+          },
+          {
+            "party_size": 4,
+            "total_slots": 8,
+            "open_slots": 8
+          }
+        ]
+      }
+    ]
+  }
+}
