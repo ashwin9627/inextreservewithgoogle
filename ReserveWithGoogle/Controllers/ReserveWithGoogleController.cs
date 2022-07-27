@@ -39,14 +39,14 @@ namespace ReserveWithGoogle.Controllers
                 List<string> MerchantList =new List<string>();// storing the merchantName
 
                 //Looping mechants and create json file for each merchant
-                foreach (var merchantname in merchants.merchants)
+                foreach (var merchant in merchants.merchants)
                 {
                     //Filtered matched merchant name with provided merchant name.
-                    Merchant filterMerchant = merchants.merchants.Where(x => x.service_id == merchantname.service_id).FirstOrDefault();
+                    //Merchant filterMerchant = merchants.merchants.Where(x => x.service_id == merchant.service_id).FirstOrDefault();
                     Availabilityclass availabilityFilecontent = new Availabilityclass();
-
+                    
                     //Filtere result has data
-                    if (filterMerchant != null)
+                    if (merchant != null)
                     {
                         DateTime dateTimeHR = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 1, 11, 0, 0);
                         int curTimeStamp = Convert.ToInt32(new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
@@ -61,12 +61,12 @@ namespace ReserveWithGoogle.Controllers
                         availabilityFilecontent.service_availability = new List<ServiceAvailability>();
                         List<Availability> availabilityList = new List<Availability>();
                         // looping with number of restaurents from same merchant
-                        foreach (var x in filterMerchant.details)
+                        foreach (var x in merchant.details)//filterMerchant.details)
                         {
                             
                             availabilityList.Add(new Availability
                             {
-                                service_id = filterMerchant.service_id,
+                                service_id = merchant.service_id, //filterMerchant.service_id,
                                 spots_open = x.open_slots,
                                 spots_total = x.total_slots,
                                 confirmation_mode = "CONFIRMATION_MODE_SYNCHRONOUS",
@@ -79,10 +79,10 @@ namespace ReserveWithGoogle.Controllers
                         availabilityFilecontent.service_availability.Add(new ServiceAvailability { availability = availabilityList });
                         
                     }
-                    MerchantList.Add(merchantname.service_id);
+                    MerchantList.Add(merchant.service_id);
                     //serializing object to json string an store into the json file
                     var json = JsonConvert.SerializeObject(availabilityFilecontent, Formatting.Indented);
-                    System.IO.File.WriteAllText(@"Availability/" + merchantname.service_id+".json", json);
+                    System.IO.File.WriteAllText(@"Availability/" + merchant.service_id+".json", json);
                     //Send the file through ftp
                     //sendfile(@"Json/CreateJson.json");
                     //return json;
